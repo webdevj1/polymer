@@ -10,7 +10,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
-
+<!-- ajax call and new quote button-->
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 
 
 <dom-module id="home-quotes">
@@ -22,6 +24,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 10px;
       }
     </style>
+
+    <!-- Ajax call -->
+  <iron-ajax
+    id="getQuoteAjax"
+    auto
+    url="http://localhost:3001/api/random-quote"
+    method="get"
+    handle-as="text"
+    last-response="{{quote}}">
+  </iron-ajax>
+    <!--   descriptive id so we can access its instance in JS using this.$.getQuoteAjax -->
+    <!--  Setting the auto attribute re-sends the request anytime the URL or parameters change -->
+    <!--  The API returns the response as a string, so we'll set handle-as="text" (other options include xml, json, blob, etc.)-->
+    <!--last-response can bind the response from the most recent request. We're automatic/two-way data binding it to a property called quote with double curly braces as delimiters-->
 
     <div class="card">
       <div class="circle">1</div>
