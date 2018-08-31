@@ -39,17 +39,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!--  The API returns the response as a string, so we'll set handle-as="text" (other options include xml, json, blob, etc.)-->
     <!--last-response can bind the response from the most recent request. We're automatic/two-way data binding it to a property called quote with double curly braces as delimiters-->
 
+    
     <div class="card">
-      <div class="circle">1</div>
-      <h1>View One</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+      <h1>Quotes</h1>
+      <!-- bind our api response-->
+      <blockquote>[[quote]]</blockquote>
+      <paper-button raised on-tap="getQuote" class="primary">Get a New Quote</paper-button>
+      <!--on-tap triggers getQuote-->
     </div>
   </template>
 
   <script>
     class homeQuotes extends Polymer.Element {
       static get is() { return 'home-quotes'; }
+    
+
+     getQuote() {
+        this.$.getQuoteAjax.generateRequest();
+      }
     }
 
     window.customElements.define(homeQuotes.is, homeQuotes);
